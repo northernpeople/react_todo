@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import TodoList from "./TodoList"
 import TodoForm from "./TodoForm"
 import {Todo} from "../../model/Todo";
+import {Switch, Route, Link, NavLink, withRouter} from "react-router-dom";
 
 
+let TodoView = (props) => (
+  <div>{JSON.stringify(props)}
+
+  </div>
+)
 class TodoManager extends Component{
   constructor(props){
     super(props);
@@ -31,8 +37,18 @@ class TodoManager extends Component{
   render(){
     return(
       <div>
-          <TodoList todos={this.repo.getAll()} delete={this.delete} />
-          <TodoForm addTodo={this.addTodo} />
+        <Link to="/list/all">all</Link>
+        <Link to="/list/new">new</Link>
+        <Switch>
+          <Route path="/list/all"
+            render={props =>(
+              <TodoList {...props} todos={this.repo.getAll()} delete={this.delete}/>
+          )}/>
+          <Route path="/list/new" render={props => (<TodoForm {...props} addTodo={this.addTodo}/>)} />
+
+          <Route path="/list/:id" render={props =>(
+                <TodoView {...props} repo={this.repo}  /> )} />
+        </Switch>
       </div>
     )
   }
