@@ -6,7 +6,8 @@ import {Switch, Route, Link, NavLink, withRouter} from "react-router-dom";
 
 
 let TodoView = (props) => (
-  <div>{JSON.stringify(props)}
+  <div>
+    {JSON.stringify(props.repo.findById(props.match.params.id))}
 
   </div>
 )

@@ -18,6 +18,10 @@ class TodoRepo{
   delete(toDelete){
     this.store = this.store.filter( td => td.id !== toDelete.id);
   }
+
+  findById(id){
+    return this.store.filter(td => td.id === id);
+  }
 }
 
 export {TodoRepo};
