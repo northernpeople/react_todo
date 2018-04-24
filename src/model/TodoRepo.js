@@ -20,7 +20,7 @@ class TodoRepo{
   }
 
   findById(id){
-    return this.store.filter(td => td.id === id);
+    return this.store.filter(td => td.id === id)[0];
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Footer, Navigation, Body} from "./layout";
+import {Footer, Navigation, Body} from "./Components/Layout";
 
 class App extends Component {
   render() {
