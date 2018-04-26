@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import {TodoList, TodoForm} from "../Todo"
+import {TodoList, TodoForm, TodoInfo} from "../Todo"
 import {Switch, Route, Link, NavLink, withRouter} from "react-router-dom";
 import {Todo} from "../../../model";
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
 
-
-let TodoDetails = (props) => (
-  <div>
-    {JSON.stringify(props.repo.findById(props.match.params.id))}
-  </div>
-)
 
 class TodoManager extends Component{
   constructor(props){
@@ -37,17 +39,26 @@ class TodoManager extends Component{
   render(){
     return(
       <div>
-        <Link style={{margin: '5px'}} to="/list/all">all</Link>
-        <Link style={{margin: '5px'}} to="/list/new">new</Link>
+
+      <Toolbar>
+
+          <Link to="/list/all">
+            <Button variant="raised">all</Button>
+          </Link>
+        <Button color="inherit" aria-label="Menu">
+          <Link to="/list/new">new</Link>
+        </Button>
+      </Toolbar>
+
+
+
         <Switch>
           <Route path="/list/all"
             render={props =>(
-              <TodoList {...props} todos={this.repo.getAll()} delete={this.delete}/>
+              <TodoList {...props} todos={this.repo.getAll()} delete={this.delete} repo={this.repo}/>
           )}/>
           <Route path="/list/new" render={props => (<TodoForm {...props} addTodo={this.addTodo}/>)} />
 
-          <Route path="/list/:id" render={props =>(
-                <TodoDetails {...props} repo={this.repo}  /> )} />
         </Switch>
       </div>
     )

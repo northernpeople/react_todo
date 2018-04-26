@@ -13,14 +13,17 @@ import Grid from 'material-ui/Grid';
 
 
 
-
 let todoRepo = new TodoRepo();
+
+let style = {
+  paper: { padding: 20, margin: 20},
+  root: { flexGrow: 1 },
+}
 
 
 let Navigation = () => (
 
-
-
+      <div className={style.root}>
         <AppBar position="static">
           <Toolbar>
             <NavLink exact to="/list">
@@ -35,7 +38,7 @@ let Navigation = () => (
             </NavLink>
           </Toolbar>
         </AppBar>
-
+      </div>
 
 
 );
@@ -51,9 +54,7 @@ let Body = () => (
 
 let About = () => (
 
-  <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <Paper style={{ padding: 20, margin: 20}}>
+    <fragment>
             <Typography variant="headline" component="h3">
               This is a sheet of paper.
             </Typography>
@@ -61,13 +62,10 @@ let About = () => (
               Paper can be used to build surface or other elements for your application.
             </Typography>
 
-            </Paper>
-          </Grid>
-          </Grid>
+    </fragment>
 
 );
 
-let Footer = () => (<div> <hr/> Thank you for your visit. </div> );
 
 
-export {Footer, Navigation, Body};
+export { Navigation, Body};
